@@ -21,7 +21,6 @@ import {
   Cog6ToothIcon,
   InboxIcon,
   PowerIcon,
-  SearchIcon,
 } from "@heroicons/react/24/solid";
 
 const Navigation = () => {
@@ -252,7 +251,7 @@ const Navigation = () => {
                   size="sm"
                   color="white"
                   className="!absolute right-1 top-1 rounded">
-                  <SearchIcon />
+                  Search
                 </Button>
               </div>
             </div>
