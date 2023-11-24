@@ -19,8 +19,8 @@ import {
   ShoppingBagIcon,
   UserCircleIcon,
   Cog6ToothIcon,
-  InboxIcon,
-  PowerIcon,
+  NewspaperIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/solid";
 
 const Navigation = () => {
@@ -53,9 +53,9 @@ const Navigation = () => {
             </Button>
             <Drawer open={open} onClose={closeDrawer}>
               <div className="mb-2 flex items-center justify-between p-4">
-                <Typography variant="h5" color="blue-gray">
-                  Player
-                </Typography>
+                <h1 className="text-xl text-black font-bold cursor-pointer">
+                  Wise
+                </h1>
                 <IconButton
                   variant="text"
                   color="blue-gray"
@@ -174,13 +174,13 @@ const Navigation = () => {
       ) : (
         // Desktop
         <div className="hidden md:block">
-          <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+          <Card className="h-[calc(104vh-2rem)] bg-[#242529] border border-gray-700 brightness-90 w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
             <div className="mb-2 p-4">
-              <Typography variant="h5" color="blue-gray">
-                Player
-              </Typography>
+              <h1 className="text-xl text-[#232D3F] font-bold cursor-pointer">
+                Wise
+              </h1>
             </div>
-            <List>
+            <List className="gap-5">
               <ListItem>
                 <ListItemPrefix>
                   <PresentationChartBarIcon className="h-5 w-5" />
@@ -189,30 +189,15 @@ const Navigation = () => {
               </ListItem>
               <ListItem>
                 <ListItemPrefix>
-                  <ShoppingBagIcon className="h-5 w-5" />
+                  <NewspaperIcon className="h-5 w-5" />
                 </ListItemPrefix>
-                E-Commerce
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <InboxIcon className="h-5 w-5" />
-                </ListItemPrefix>
-                Inbox
-                <ListItemSuffix>
-                  <Chip
-                    value="14"
-                    size="sm"
-                    variant="ghost"
-                    color="blue-gray"
-                    className="rounded-full"
-                  />
-                </ListItemSuffix>
+                Activity
               </ListItem>
               <ListItem>
                 <ListItemPrefix>
                   <UserCircleIcon className="h-5 w-5" />
                 </ListItemPrefix>
-                Profile
+                Schedule
               </ListItem>
               <ListItem>
                 <ListItemPrefix>
@@ -220,42 +205,26 @@ const Navigation = () => {
                 </ListItemPrefix>
                 Settings
               </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <PowerIcon className="h-5 w-5" />
-                </ListItemPrefix>
-                Log Out
-              </ListItem>
             </List>
+            <Button className="mt-[auto] font-[Hachi Maru Pop] hover:bg-gray-800">Log Out</Button>
           </Card>
         </div>
       )}
       <div className="flex-grow">
         <div className="p-4">
-          <Navbar
-            variant="gradient"
-            color="blue-gray"
-            className="mx-auto max-w-screen-xl from-blue-gray-900 to-blue-gray-800 px-4 py-3">
-            <div className="flex flex-wrap items-center justify-between gap-y-4 text-white">
-              <div className="relative flex w-full gap-2 md:w-max">
-                <Input
-                  type="search"
-                  color="white"
-                  label="Type here..."
-                  className="pr-20"
-                  containerProps={{
-                    className: "min-w-[288px]",
-                  }}
-                />
-                <Button
-                  size="sm"
-                  color="white"
-                  className="!absolute right-1 top-1 rounded">
-                  Search
-                </Button>
-              </div>
-            </div>
-          </Navbar>
+          <div className="ml-[790px] flex w-full gap-2 mb-2 md:w-max">
+            <Input
+              label="Type here..."
+              color="white"
+              className="pr-30 text-white border"
+              containerProps={{
+                className: "min-w-[288px]",
+              }}
+            />
+            <Button className="bg-white px-3 py-0">
+              <MagnifyingGlassIcon className="h-5 w-5 mr-1 stroke-2 text-black" />
+            </Button>
+          </div>
         </div>
       </div>
     </div>
