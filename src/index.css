@@ -2,21 +2,23 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import url("https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Mochiy+Pop+One&display=swap");
-
-:root {
-  --Primary-Font: "Mochiy Pop One";
-  --Secondary-Font: "Hachi Maru Pop";
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 ::-webkit-scrollbar {
   display: none;
 }
 
 * {
-  font-family: var(--Primary-Font);
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: black;
 }
 
 body {
-    background-color: #242529;
+  background: rgb(242, 235, 198);
+  background: linear-gradient(
+    36deg,
+    rgba(242, 235, 198, 1) 16%,
+    rgba(245, 230, 151, 1) 39%
+  );
 }
