@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  Navbar,
-  Input,
   Card,
   Drawer,
   Button,
@@ -11,8 +9,6 @@ import {
   List,
   ListItem,
   ListItemPrefix,
-  ListItemSuffix,
-  Chip,
 } from "@material-tailwind/react";
 
 import {
@@ -23,6 +19,8 @@ import {
   ArrowLeftOnRectangleIcon,
   Squares2X2Icon,
 } from "@heroicons/react/24/solid";
+
+import Sidebar from "../../components/Left-Menu";
 
 const Navigation = () => {
   const [isMobile, setIsMobile] = React.useState(false);
@@ -165,13 +163,7 @@ const Navigation = () => {
       )}
 
       <div className="Menu bottom-3 flex right-5 rounded-md md:rounded-3xl relative md:static md:right-[30rem] bg-white mt-8 shadow-2xl p-9 md:h-[calc(96vh-2rem)] w-full md:w-[300rem]">
-        <div className="left-menu">
-          <div className="title">
-            <h1 className="md:static relative bottom-7 left-40 text-2xl md:text-4xl ">
-              Dashboard
-            </h1>
-          </div>
-        </div>
+        <Sidebar />
         <div className="right-menu hidden md:block bottom-[2.25rem] relative left-[35rem]">
           <div className="h-[calc(96vh-2rem)] w-80 bg-[#F6F2DD] rounded-r-3xl pt-16 px-5">
             <div className="flex flex-col justify-center items-center text-center border-b-[1px] border-black pb-10">
