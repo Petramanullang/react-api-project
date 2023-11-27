@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "animate.css"
 import {
   Card,
   Drawer,
   Button,
-  Typography,
   IconButton,
   List,
   ListItem,
@@ -21,6 +21,22 @@ import {
 } from "@heroicons/react/24/solid";
 
 export default function Navigation() {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth <= 768);
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const [open, setOpen] = React.useState(false);
+  const openDrawer = () => setOpen(true);
+  const closeDrawer = () => setOpen(false);
+
   return (
     <div className="navigation">
       {isMobile ? (
@@ -97,7 +113,7 @@ export default function Navigation() {
         </div>
       ) : (
         // Desktop
-        <div className="hidden md:flex w-full">
+        <div className="hidden md:flex w-full animate__animated animate__fadeInLeft">
           <Card className="h-[calc(104vh-2rem)] bg-transparent max-w-[20rem] p-4 shadow-none">
             <div className="mb-10 p-4">
               <img src="../../public/assets/Logo.png" alt="" />
