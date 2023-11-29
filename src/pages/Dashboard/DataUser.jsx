@@ -4,7 +4,7 @@ import axios from "axios";
 import { Button } from "@material-tailwind/react";
 import SidebarUser from "../../components/Data-User";
 import Navigation from "../../components/Navigation";
-import { BellIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+import { PencilSquareIcon } from "@heroicons/react/24/solid";
 
 const CustomButton = ({ text, time }) => {
   return (
@@ -52,7 +52,7 @@ export default function DataUser() {
       <Navigation />
       <div className="Menu bottom-3 flex right-5 rounded-md md:rounded-3xl relative md:static md:right-[30rem] bg-white mt-8 shadow-xl p-9 md:h-[calc(96vh-2rem)] w-full md:w-[300rem]">
         <SidebarUser />
-        
+
       </div>
     </div>
   );
