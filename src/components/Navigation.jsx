@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "animate.css"
+import "animate.css";
 import {
   Card,
   Drawer,
@@ -18,7 +18,8 @@ import {
   FolderIcon,
   ArrowLeftOnRectangleIcon,
   Squares2X2Icon,
-} from "@heroicons/react/24/solid";
+  Bars3Icon,
+} from "@heroicons/react/24/outline";
 
 export default function Navigation() {
   const [isMobile, setIsMobile] = React.useState(false);
@@ -44,9 +45,9 @@ export default function Navigation() {
         <div className="md:hidden">
           <React.Fragment>
             <Button
-              className="rotate-90 relative z-10 left-7 top-4 p-3 rounded-none text-xl text-black bg-white border-none shadow-none hover:shadow-none"
+              className="relative z-10 left-7 top-4 p-3 bg-transparent rounded-none text-xl text-black border-none shadow-none hover:shadow-none animate__animated animate__fadeInUp"
               onClick={openDrawer}>
-              |||
+              <Bars3Icon className="h-5 w-5 bg-transparent" />
             </Button>
             <Drawer open={open} onClose={closeDrawer}>
               <div className="mb-2 flex items-center justify-between p-4">
@@ -70,13 +71,15 @@ export default function Navigation() {
                   </svg>
                 </IconButton>
               </div>
-              <List className="gap-5 ml-3">
-                <ListItem className="hover:bg-white">
-                  <ListItemPrefix>
-                    <Squares2X2Icon className="h-5 w-5" />
-                  </ListItemPrefix>
-                  Dashboard
-                </ListItem>
+              <List className="gap-5 ml-3 h-[200vh]">
+                <Link to={"/"}>
+                  <ListItem className="hover:bg-white">
+                    <ListItemPrefix>
+                      <Squares2X2Icon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Dashboard
+                  </ListItem>
+                </Link>
                 <ListItem className="hover:bg-white">
                   <ListItemPrefix>
                     <CalendarDaysIcon className="h-5 w-5" />
@@ -102,10 +105,12 @@ export default function Navigation() {
                   Settings
                 </ListItem>
                 <ListItem className="hover:bg-white mt-36 ml-1">
+                  <Link to={"/login"} className="flex">
                   <ListItemPrefix>
                     <ArrowLeftOnRectangleIcon className="h-5 w-5" />
                   </ListItemPrefix>
                   Log out
+                  </Link>
                 </ListItem>
               </List>
             </Drawer>
@@ -113,18 +118,20 @@ export default function Navigation() {
         </div>
       ) : (
         // Desktop
-        <div className="hidden md:flex w-full animate__animated animate__fadeInLeft">
+        <div className="hidden md:flex w-full h-full animate__animated animate__fadeInLeft">
           <Card className="h-[calc(104vh-2rem)] bg-transparent max-w-[20rem] p-4 shadow-none">
             <div className="mb-10 p-4">
               <img src="../../public/assets/Logo.png" alt="" />
             </div>
             <List className="gap-5 ml-3">
-              <ListItem className="hover:bg-white focus:bg-white">
-                <ListItemPrefix>
-                  <Squares2X2Icon className="h-5 w-5" />
-                </ListItemPrefix>
-                Dashboard
-              </ListItem>
+              <Link to={"/"}>
+                <ListItem className="hover:bg-white focus:bg-white focused">
+                  <ListItemPrefix>
+                    <Squares2X2Icon className="h-5 w-5" />
+                  </ListItemPrefix>
+                  Dashboard
+                </ListItem>
+              </Link>
               <ListItem className="hover:bg-white focus:bg-white">
                 <ListItemPrefix>
                   <CalendarDaysIcon className="h-5 w-5" />
@@ -150,10 +157,12 @@ export default function Navigation() {
                 Settings
               </ListItem>
               <ListItem className="hover:bg-white focus:bg-white mt-64">
-                <ListItemPrefix>
-                  <ArrowLeftOnRectangleIcon className="h-5 w-5" />
-                </ListItemPrefix>
-                Log out
+                <Link to={"/login"} className="flex w-1/2">
+                  <ListItemPrefix>
+                    <ArrowLeftOnRectangleIcon className="h-5 w-5" />
+                  </ListItemPrefix>
+                  Log out
+                </Link>
               </ListItem>
             </List>
           </Card>

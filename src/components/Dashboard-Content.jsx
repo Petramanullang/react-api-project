@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@material-tailwind/react";
 import "animate.css";
+import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
 
 const CustomSpan = ({ text }) => {
   return <span className="font-normal text-sm">{text}</span>;
@@ -14,6 +15,11 @@ const CustomSpan2 = ({ text }) => {
 
 export default function Sidebar() {
   const [user, setUser] = useState([]);
+  const [paging, setPaging] = useState({
+    currentPage: 1,
+    previousPage: 0,
+    nextPage: 2,
+  });
 
   const CustomButton = () => {
     return (
@@ -33,11 +39,35 @@ export default function Sidebar() {
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, [paging.currentPage]);
 
   const getUser = () => {
-    axios.get(`https://reqres.in/api/users`).then((res) => {
-      setUser(res.data.data);
+    axios
+      .get(
+        `https://reqres.in/api/users?name=&type=&per_page=6&page=${paging.currentPage}`
+      )
+      .then((res) => {
+        setUser(res.data.data);
+        setPaging({
+          currentPage: res.data.page,
+          previousPage: res.data.page - 1,
+          nextPage: res.data.page + 1,
+          totalPages: res.data.total_pages,
+        });
+      });
+  };
+
+  const handleBack = () => {
+    setPaging({
+      ...paging,
+      currentPage: paging.currentPage - 1,
+    });
+  };
+
+  const handleNext = () => {
+    setPaging({
+      ...paging,
+      currentPage: paging.currentPage + 1,
     });
   };
 
@@ -47,21 +77,46 @@ export default function Sidebar() {
         <h1 className="md:static relative bottom-7 left-40 text-2xl md:text-4xl ">
           Dashboard
         </h1>
+        <div className="flex justify-between mt-10 mr-1">
+          <div className="user-page text-xl">
+            User Page {paging.currentPage}
+          </div>
+          <div className="pagination flex gap-5">
+            <button
+              className="Back text-yellow-800 flex disabled:text-black"
+              onClick={handleBack}
+              disabled={!paging.previousPage}>
+              <ChevronLeftIcon className="h-4 w-5 mt-1" />
+              Back
+            </button>
+            <button
+              className="Next text-yellow-800 flex disabled:text-black"
+              onClick={handleNext}
+              disabled={paging.currentPage === paging.totalPages}>
+              Next
+              <ChevronRightIcon className="h-4 w-5 mt-1" />
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="member md:mt-20 flex">
+      <div className="member md:mt-7 flex">
         <div className="member-name flex-col">
-          <p className="text-[#9CA3AF] hidden md:block font-normal text-xl">User name</p>
-          <p className="text-[#9CA3AF] md:hidden block font-normal text-3xl">Users</p>
-        
+          <p className="text-[#9CA3AF] hidden md:block font-normal text-xl">
+            User name
+          </p>
+          <p className="text-[#9CA3AF] md:hidden block font-normal text-3xl">
+            Users
+          </p>
+
           {user.map((user) => (
-            <div key={user.id} className="member py-4">
+            <div key={user.id} className="member py-4 w-64">
               <Link to={`/data-user/${user.id}`}>
                 <button className="flex items-center">
                   <div className="user-name">
                     <img
                       src={user.avatar}
                       alt="Avatar"
-                      className="avatar h-14 rounded-full border"
+                      className="avatar h-14 w-14 object-cover rounded-full border"
                     />
                   </div>
                   <div className="flex flex-col">
