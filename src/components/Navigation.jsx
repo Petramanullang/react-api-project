@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "animate.css";
 import {
   Card,
@@ -23,6 +23,12 @@ import {
 
 export default function Navigation() {
   const [isMobile, setIsMobile] = React.useState(false);
+  const Navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("accesstoken");
+    Navigate("/login");
+  };
 
   React.useEffect(() => {
     function handleResize() {
@@ -104,12 +110,14 @@ export default function Navigation() {
                   </ListItemPrefix>
                   Settings
                 </ListItem>
-                <ListItem className="hover:bg-white mt-36 ml-1">
+                <ListItem
+                  className="hover:bg-white mt-36 ml-1"
+                  onClick={handleLogout}>
                   <Link to={"/login"} className="flex">
-                  <ListItemPrefix>
-                    <ArrowLeftOnRectangleIcon className="h-5 w-5" />
-                  </ListItemPrefix>
-                  Log out
+                    <ListItemPrefix>
+                      <ArrowLeftOnRectangleIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Log out
                   </Link>
                 </ListItem>
               </List>
