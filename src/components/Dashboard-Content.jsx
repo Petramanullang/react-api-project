@@ -74,11 +74,11 @@ export default function Sidebar() {
   return (
     <div className="left-menu">
       <div className="title">
-        <h1 className="md:static relative bottom-7 left-40 text-2xl md:text-4xl ">
+        <h1 className="md:static relative bottom-7 left-44 w-36 text-2xl md:text-4xl ">
           Dashboard
         </h1>
-        <div className="flex justify-between mt-10 mr-1">
-          <div className="user-page text-xl">
+        <div className="flex justify-between mt-10 mb-5 mr-1">
+          <div className="user-page text-xl mr-10">
             User Page {paging.currentPage}
           </div>
           <div className="pagination flex gap-5">
@@ -104,7 +104,7 @@ export default function Sidebar() {
           <p className="text-[#9CA3AF] hidden md:block font-normal text-xl">
             User name
           </p>
-          <p className="text-[#9CA3AF] md:hidden block font-normal text-3xl">
+          <p className="text-[#9CA3AF] md:hidden block font-normal text-xl">
             Users
           </p>
 
