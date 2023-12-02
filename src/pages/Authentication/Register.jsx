@@ -1,5 +1,5 @@
 import "../../index.css";
-import { EnvelopeIcon, KeyIcon } from "@heroicons/react/24/outline";
+import { EnvelopeIcon, KeyIcon, EyeIcon, EyeSlashIcon} from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState } from "react";
@@ -11,8 +11,12 @@ export default function Login() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
   const Navigate = useNavigate();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const onChangeEmail = (e) => {
     setUsername(e.target.value);
@@ -42,7 +46,7 @@ export default function Login() {
         localStorage.setItem("accesstoken", token);
         setSuccess(res.data.message);
         setLoading(false);
-        Navigate("/");
+        Navigate("/login");
       })
       .catch((err) => {
         console.log(err.response);
@@ -104,6 +108,16 @@ export default function Login() {
                   placeholder="Your Password"
                   onClick={onChangePassword}
                 />
+                <button
+                  className="absolute inset-y-0 right-0 flex items-center pr-3"
+                  type="button"
+                  onClick={togglePasswordVisibility}>
+                  {showPassword ? (
+                    <EyeIcon className="w-5 h-5 text-gray-500" />
+                  ) : (
+                    <EyeSlashIcon className="w-5 h-5 text-gray-500" />
+                  )}
+                </button>
               </div>
             </form>
             <button

@@ -1,9 +1,15 @@
 import "../../index.css";
-import { EnvelopeIcon, KeyIcon } from "@heroicons/react/24/outline";
+import {
+  EnvelopeIcon,
+  KeyIcon,
+  EyeIcon,
+  EyeSlashIcon,
+} from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -11,8 +17,12 @@ export default function Login() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
   const Navigate = useNavigate();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -22,6 +32,7 @@ export default function Login() {
 
   const onChangePassword = (e) => {
     setPassword(e.target.value);
+    console.log(e.target.value);
     setError("");
     setSuccess("");
   };
@@ -41,13 +52,24 @@ export default function Login() {
         const token = res.data.token;
         localStorage.setItem("accesstoken", token);
         setSuccess(res.data.message);
+        console.log(res);
         setLoading(false);
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Logged in successfully!",
+        });
         Navigate("/");
       })
       .catch((err) => {
         console.log(err.response);
         setError(err.response.data.error);
         setLoading(false);
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: err.response.data.error,
+        });
       });
   };
 
@@ -102,11 +124,22 @@ export default function Login() {
                   <KeyIcon className="w-5 h-5 text-gray-400" />
                 </div>
                 <input
-                  type="text"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Your Password"
-                  onClick={onChangePassword}
+                  onChange={onChangePassword}
                 />
+                <button
+                  className="absolute inset-y-0 right-0 flex items-center pr-3"
+                  type="button"
+                  onClick={togglePasswordVisibility}>
+                  {showPassword ? (
+                    <EyeIcon className="w-5 h-5 text-gray-500" />
+                  ) : (
+                    <EyeSlashIcon className="w-5 h-5 text-gray-500" />
+                  )}
+                </button>
               </div>
             </form>
             <button
