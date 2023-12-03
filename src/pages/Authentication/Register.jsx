@@ -1,5 +1,10 @@
 import "../../index.css";
-import { EnvelopeIcon, KeyIcon, EyeIcon, EyeSlashIcon} from "@heroicons/react/24/outline";
+import {
+  EnvelopeIcon,
+  KeyIcon,
+  EyeIcon,
+  EyeSlashIcon,
+} from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useState } from "react";
@@ -102,11 +107,11 @@ export default function Login() {
                   <KeyIcon className="w-5 h-5 text-gray-400" />
                 </div>
                 <input
-                  type="text"
-                  id="email-address-icon"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Your Password"
-                  onClick={onChangePassword}
+                  onChange={onChangePassword}
                 />
                 <button
                   className="absolute inset-y-0 right-0 flex items-center pr-3"
