@@ -14,6 +14,7 @@ This Dashboard provides a minimalistic yet functional interface developed using 
 - **Responsive Design:** Ensures optimal display across various devices.
 - **Material-Tailwind Integration:** Offers customizable and ready-to-use UI components.
 - **Animate.css Effects:** Adds smooth and visually appealing animations.
+- **Sweetalert2:** Add a beautiful alert and easy to use
 - **Ease of Customization:** Simple structure allows for easy modifications.
 
 ## Usage
